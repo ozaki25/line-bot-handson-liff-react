@@ -10,7 +10,12 @@ function useLiff({ liffId }) {
     setLoading(true);
     try {
       await liff.init({ liffId });
-      alert('success liff init');
+      if (liff.isLoggedIn()) {
+        console.log('logged in!');
+      } else {
+        console.log('not logged in');
+        liff.login();
+      }
     } catch (error) {
       alert({ error });
       setError(error);
