@@ -4,7 +4,7 @@ import useLiff from './hooks/useLiff';
 const liffId = '1111111111-XXXXXXXX';
 
 function App() {
-  const { loading, error } = useLiff({ liffId });
+  const { loading, error, profile, fetchProfile } = useLiff({ liffId });
 
   if (loading) return <p>...loading</p>;
   if (error) return <p>{error.message}</p>;
@@ -12,6 +12,15 @@ function App() {
   return (
     <div>
       <h1>Hello LIFF</h1>
+      <section>
+        <button onClick={() => fetchProfile()}>Get Profile</button>
+        {profile && (
+          <div>
+            <p>UserID: {profile.userId}</p>
+            <p>DisplayName: {profile.displayName}</p>
+          </div>
+        )}
+      </section>
     </div>
   );
 }
