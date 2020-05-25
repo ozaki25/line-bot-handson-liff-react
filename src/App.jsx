@@ -1,27 +1,17 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import useLiff from './hooks/useLiff';
+
+const liffId = '1111111111-XXXXXXXX';
 
 function App() {
-  // TODO: Remove before merging, this was just for fast-refresh testing
-  const [counter, setCounter] = useState(5);
-  setTimeout(() => setCounter(counter + 1), 1000);
+  const { loading, error } = useLiff({ liffId });
+
+  if (loading) return <p>...loading</p>;
+  if (error) return <p>{error.message}</p>;
+
   return (
-    <div className={'App'}>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {counter} Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Hello LIFF</h1>
     </div>
   );
 }
